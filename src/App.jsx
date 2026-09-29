@@ -87,7 +87,6 @@ export default function App() {
       {!user && !loading && <EmptyState onPick={handleSearch} />}
       {user && <ProfileCard user={user} />}
       {user && <LanguageChart repos={repos} />}
-      {user && <LanguageChart repos={repos} />}
       {user && <ContributionGraph username={user.login} />}
 
       {user && repos.length === 0 && (
