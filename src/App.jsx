@@ -20,7 +20,8 @@ export default function App() {
   const [sort, setSort] = useState("stars");
 
   async function handleSearch(username) {
-    if (!username) {
+    const name = username.trim();
+    if (!name) {
       setError("Please enter a GitHub username.");
       return;
     }
