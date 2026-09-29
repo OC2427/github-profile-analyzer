@@ -7,6 +7,7 @@ import ErrorMessage from "./components/ErrorMessage";
 import Loader from "./components/Loader";
 import LanguageChart from "./components/LanguageChart";
 import { fetchUser, fetchRepos } from "./api/github";
+import ThemeToggle from "./components/ThemeToggle";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -72,6 +73,7 @@ export default function App() {
       <header>
         <h1>GitHub Profile Analyzer</h1>
         <p>Search any GitHub user to explore their profile and repositories.</p>
+        <ThemeToggle />
       </header>
 
       <SearchBar onSearch={handleSearch} loading={loading} />
