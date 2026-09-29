@@ -8,6 +8,7 @@ import Loader from "./components/Loader";
 import LanguageChart from "./components/LanguageChart";
 import { fetchUser, fetchRepos } from "./api/github";
 import ThemeToggle from "./components/ThemeToggle";
+import EmptyState from "./components/EmptyState";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -81,6 +82,8 @@ export default function App() {
 
       <ErrorMessage message={error} />
       {loading && <Loader />}
+      {loading && <Loader />}
+      {!user && !loading && <EmptyState onPick={handleSearch} />}
       {user && <ProfileCard user={user} />}
       {user && <LanguageChart repos={repos} />}
 
