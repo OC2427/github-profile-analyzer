@@ -9,6 +9,7 @@ import LanguageChart from "./components/LanguageChart";
 import { fetchUser, fetchRepos } from "./api/github";
 import ThemeToggle from "./components/ThemeToggle";
 import EmptyState from "./components/EmptyState";
+import ContributionGraph from "./components/ContributionGraph";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -86,6 +87,8 @@ export default function App() {
       {!user && !loading && <EmptyState onPick={handleSearch} />}
       {user && <ProfileCard user={user} />}
       {user && <LanguageChart repos={repos} />}
+      {user && <LanguageChart repos={repos} />}
+      {user && <ContributionGraph username={user.login} />}
 
       {user && repos.length === 0 && (
         <p className="status">This user has no public repositories yet.</p>
