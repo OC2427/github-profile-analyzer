@@ -1,16 +1,64 @@
-# React + Vite
+# GitHub Profile Analyzer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive dashboard that lets you search any GitHub username and explore the developer's public profile, repositories, and language breakdown, using live data from the GitHub REST API.
 
-Currently, two official plugins are available:
+**Live demo:** (https://github-profile-analyzer-9ixc.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+![Dashboard](screenshots/dashboard.png)
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Search any GitHub username
+- Profile card with avatar, name, bio, followers, following, and repo count
+- Public repositories with name, description, stars, and language
+- Filter repositories by name, filter by language, and sort by stars, last updated, or name
+- Language breakdown bar showing the share of repos per language
+- Loading spinner while data is fetched
+- Clear error messages for invalid usernames, empty input, network failures, and API rate limits
+- Friendly message for users with no public repositories
+- Responsive layout that works from phones to desktops
+- Dark theme
 
-## Expanding the ESLint configuration
+![Error state](screenshots/error.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Tech Stack
+
+- React (Vite)
+- Plain CSS
+- GitHub REST API (`/users/{username}` and `/users/{username}/repos`)
+
+## Run Locally
+
+```bash
+git clone https://github.com/OC2427/github-profile-analyzer.git
+cd github-profile-analyzer
+npm install
+npm run dev
+```
+
+Then open the local URL shown in the terminal.
+
+Optional: create a `.env` file with `VITE_GITHUB_TOKEN=your_token` to raise the API rate limit. A token with no scopes is enough for public data.
+
+## Project Structure
+
+```
+src/
+  api/github.js            API calls and error handling
+  components/
+    SearchBar.jsx
+    ProfileCard.jsx
+    RepoFilters.jsx
+    RepoList.jsx
+    LanguageChart.jsx
+    ErrorMessage.jsx
+    Loader.jsx
+  App.jsx                  State, filtering, and sorting logic
+  index.css                Styling and theme
+```
+
+## Known Limitations
+
+- Only the 100 most recently updated repositories per user are loaded.
+- Without a token, GitHub allows 60 API requests per hour per IP address.
+- The language chart shows the share of repositories by primary language, not lines of code.
